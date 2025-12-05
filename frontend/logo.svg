@@ -1,0 +1,35 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="infinityGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle (Optional, can be removed for transparency) -->
+  <circle cx="50" cy="50" r="48" fill="white" opacity="0.95"/>
+  
+  <!-- Infinity Symbol -->
+  <path d="M 25 50 C 25 40, 18 32, 25 32 C 32 32, 35 40, 40 50 C 45 60, 48 68, 55 68 C 62 68, 65 60, 75 50 C 85 40, 88 32, 75 32 C 68 32, 65 40, 60 50 C 55 40, 52 32, 45 32 C 38 32, 35 40, 30 50" 
+        stroke="url(#infinityGradient)" 
+        stroke-width="6" 
+        stroke-linecap="round" 
+        fill="none"
+        filter="url(#glow)"/>
+  
+  <!-- Check Mark -->
+  <path d="M 62 48 L 67 53 L 78 42" 
+        stroke="#10B981" 
+        stroke-width="6" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none"
+        filter="url(#glow)"/>
+</svg>

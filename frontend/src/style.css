@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: #1a1a1a;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Black/Gray Gradient Background */
+  background: linear-gradient(135deg, #000000 0%, #434343 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  color: #1a1a1a;
+  font-family: 'Outfit', sans-serif;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Element Plus Overrides for Monochrome Theme */
+:root {
+  --el-color-primary: #000000;
+  --el-color-primary-light-3: #404040;
+  --el-color-primary-light-5: #737373;
+  --el-color-primary-light-7: #a3a3a3;
+  --el-color-primary-light-8: #d4d4d4;
+  --el-color-primary-light-9: #f5f5f5;
+  --el-color-primary-dark-2: #000000;
+}
+
+/* Force Pagination Active Color */
+.el-pagination.is-background .el-pager li.is-active {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Force Switch Colors */
+.el-switch {
+  --el-switch-on-color: #000000;
+  --el-switch-off-color: #e5e7eb;
+  /* Gray-200 */
+}
+
+.el-switch.is-checked .el-switch__core {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.el-switch__core {
+  background-color: #e5e7eb !important;
+  /* Gray-200 for off state */
+  border-color: #e5e7eb !important;
+}
+
+/* Force Switch Label Active Color */
+.el-switch__label.is-active {
+  color: #000000 !important;
+}
+
+/* Force Slider Bar Color */
+.el-slider__bar {
+  background-color: #000000 !important;
+}
+
+.el-slider__button {
+  border-color: #000000 !important;
+}
+
+/* Force Button Primary Color */
+.el-button--primary {
+  --el-button-bg-color: #000000;
+  --el-button-border-color: #000000;
+  --el-button-hover-bg-color: #333333;
+  --el-button-hover-border-color: #333333;
+  --el-button-active-bg-color: #000000;
+  --el-button-active-border-color: #000000;
+}
+
+/* Force Radio Button Active Color */
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: #000000 !important;
+  background: #000000 !important;
+}
+
+.el-radio__input.is-checked+.el-radio__label {
+  color: #000000 !important;
+}
+
+/* Force Checkbox Active Color */
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.el-checkbox__input.is-checked+.el-checkbox__label {
+  color: #000000 !important;
+}
+
+/* ========== Select Dropdown Styles ========== */
+/* Selected item in dropdown - text color */
+.el-select-dropdown__item.selected,
+.el-select-dropdown__item.is-selected {
+  color: #000000 !important;
+  font-weight: 600 !important;
+}
+
+/* Hover state in dropdown */
+.el-select-dropdown__item:hover,
+.el-select-dropdown__item.hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* Selected item background (remove blue background) */
+.el-select-dropdown__item.selected::after,
+.el-select-dropdown__item.is-selected::after {
+  color: #000000 !important;
+}
+
+/* ========== Select Input Styles ========== */
+/* Focus state - black border */
+.el-select .el-input.is-focus .el-input__wrapper,
+.el-select .el-select__wrapper.is-focused {
+  box-shadow: 0 0 0 1px #000000 inset !important;
+}
+
+/* Hover state - gray border */
+.el-select .el-input__wrapper:hover,
+.el-select .el-select__wrapper:hover {
+  box-shadow: 0 0 0 1px #a3a3a3 inset !important;
+}
+
+/* ========== Pagination Select Styles ========== */
+.el-pagination .el-select .el-input.is-focus .el-input__wrapper {
+  box-shadow: 0 0 0 1px #000000 inset !important;
+}
+
+.el-pagination .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px #a3a3a3 inset !important;
+}
+
+/* ========== Input/Textarea Focus Styles ========== */
+.el-input__wrapper:has(.el-input__inner:focus),
+.el-input.is-focus .el-input__wrapper {
+  box-shadow: 0 0 0 1px #000000 inset !important;
+}
+
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 1px #000000 inset !important;
+}
+
+/* ========== Select Popper Arrow Color ========== */
+.el-select .el-input .el-select__caret {
+  color: #666666 !important;
+}
+
+/* ========== Override Element Plus Primary Color Variables ========== */
+.el-select-dropdown {
+  --el-color-primary: #000000 !important;
+}
+
+.el-popper {
+  --el-color-primary: #000000 !important;
+}
+
+/* Force Dropdown Menu Item Hover Color */
+.el-dropdown-menu__item:not(.is-disabled):focus,
+.el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #f3f4f6 !important;
+  /* Gray-100 */
+  color: #000000 !important;
+}
+
+/* ========== MessageBox / Dialog Styles ========== */
+/* MessageBox 确认对话框样式 */
+.el-message-box {
+  border-radius: 1rem !important;
+  padding: 20px !important;
+}
+
+.el-message-box__header {
+  padding-bottom: 12px !important;
+}
+
+.el-message-box__title {
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+}
+
+.el-message-box__content {
+  padding: 16px 0 !important;
+  color: #4b5563 !important;
+}
+
+.el-message-box__btns {
+  padding-top: 16px !important;
+}
+
+/* 取消按钮 */
+.el-message-box__btns .el-button--default {
+  border-radius: 0.75rem !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  border-color: #e5e7eb !important;
+  color: #4b5563 !important;
+}
+
+.el-message-box__btns .el-button--default:hover {
+  background-color: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+  color: #1f2937 !important;
+}
+
+/* 确认按钮 - 黑色主题 */
+.el-message-box__btns .el-button--primary {
+  border-radius: 0.75rem !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.el-message-box__btns .el-button--primary:hover {
+  background-color: #333333 !important;
+  border-color: #333333 !important;
+}
+
+/* 警告图标颜色 */
+.el-message-box__status.el-icon {
+  color: #f59e0b !important;
+}
+
+/* ========== Dialog 对话框样式 ========== */
+.el-dialog {
+  border-radius: 1rem !important;
+}
+
+.el-dialog__header {
+  padding: 20px 24px 16px !important;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.el-dialog__title {
+  font-weight: 700 !important;
+  color: #1a1a1a !important;
+  font-size: 1.125rem !important;
+}
+
+.el-dialog__body {
+  padding: 20px 24px !important;
+}
+
+.el-dialog__footer {
+  padding: 16px 24px 20px !important;
+  border-top: 1px solid #f3f4f6;
+}
+
+/* Dialog 内的按钮样式 */
+.el-dialog__footer .el-button--default {
+  border-radius: 0.75rem !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+}
+
+.el-dialog__footer .el-button--primary {
+  border-radius: 0.75rem !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+.el-dialog__footer .el-button--primary:hover {
+  background-color: #333333 !important;
+  border-color: #333333 !important;
+}
+
+/* ========== Message 消息提示样式 ========== */
+.el-message {
+  border-radius: 0.75rem !important;
+  padding: 12px 20px !important;
+}
+
+.el-message--success {
+  background-color: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+}
+
+.el-message--warning {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+}
+
+.el-message--error {
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+}
+
+.el-message--info {
+  background-color: #f9fafb !important;
+  border-color: #e5e7eb !important;
+}
+
+/* ========== Custom Input/Select Styles ========== */
+.custom-input .el-input__wrapper,
+.custom-select .el-input__wrapper,
+.custom-textarea .el-textarea__inner {
+  background-color: #f9fafb !important;
+  /* Gray-50 */
+  box-shadow: 0 0 0 1px #e5e7eb inset !important;
+  /* Gray-200 - Visible Border */
+  border-radius: 0.75rem !important;
+  /* rounded-xl */
+  padding: 8px 12px !important;
+  transition: all 0.2s;
+}
+
+.custom-input .el-input__wrapper:hover,
+.custom-select .el-input__wrapper:hover,
+.custom-textarea .el-textarea__inner:hover {
+  background-color: #f3f4f6 !important;
+  /* Gray-100 */
+  box-shadow: 0 0 0 1px #d1d5db inset !important;
+  /* Gray-300 */
+}
+
+.custom-input .el-input__wrapper.is-focus,
+.custom-select .el-input.is-focus .el-input__wrapper,
+.custom-textarea .el-textarea__inner:focus {
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #000000 inset !important;
+  /* Black Focus */
+}
+
+.custom-input .el-input__inner {
+  height: 24px !important;
+  color: #111827 !important;
+  /* Gray-900 */
+  font-weight: 500 !important;
+}
+
+/* Fix Form Item Alignment */
+.el-form-item {
+  margin-bottom: 24px !important;
+}
+
+.el-form-item__label {
+  display: flex !important;
+  align-items: center !important;
+  height: auto !important;
+  min-height: 40px !important;
+  /* Match input height */
+  line-height: 1.2 !important;
+  padding-bottom: 0 !important;
+  color: #374151 !important;
+  /* Gray-700 */
+  font-weight: 600 !important;
+}
+
+.el-form-item__content {
+  min-height: 40px !important;
+  /* Match input height */
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* ========== Input Number Styles ========== */
+.el-input-number .el-input__wrapper {
+  background-color: #f9fafb !important;
+  box-shadow: 0 0 0 1px #e5e7eb inset !important;
+  border-radius: 0.75rem !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
+.el-input-number .el-input__wrapper:hover {
+  background-color: #f3f4f6 !important;
+  box-shadow: 0 0 0 1px #d1d5db inset !important;
+}
+
+.el-input-number .el-input__wrapper.is-focus {
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 2px #000000 inset !important;
+}
+
+/* Decrease/Increase Buttons */
+.el-input-number__decrease,
+.el-input-number__increase {
+  background-color: transparent !important;
+  border: none !important;
+  color: #6b7280 !important;
+}
+
+.el-input-number__decrease:hover,
+.el-input-number__increase:hover {
+  color: #000000 !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.el-input-number__decrease {
+  border-right: 1px solid #e5e7eb !important;
+  border-radius: 0.75rem 0 0 0.75rem !important;
+}
+
+.el-input-number__increase {
+  border-left: 1px solid #e5e7eb !important;
+  border-radius: 0 0.75rem 0.75rem 0 !important;
+}

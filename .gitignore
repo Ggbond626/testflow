@@ -1,0 +1,114 @@
+# ========================================
+# Python
+# ========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+.hypothesis/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ========================================
+# Node.js
+# ========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# ========================================
+# IDE & Editor
+# ========================================
+.idea/
+.kiro/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ========================================
+# Database
+# ========================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ========================================
+# Environment & Secrets
+# ========================================
+.env
+.env.local
+.env.*.local
+!.env.example
+!.env.development
+
+# ========================================
+# Logs
+# ========================================
+logs/
+*.log
+backend/logs/
+
+# ========================================
+# Build & Cache
+# ========================================
+*.tsbuildinfo
+.vite/
+.vite-temp/
+dist/
+.cache/
+
+# ========================================
+# Uploads (user generated content)
+# ========================================
+backend/uploads/
+
+# ========================================
+# Prototype files (deprecated)
+# ========================================
+html/
+
+# ========================================
+# OS generated files
+# ========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ========================================
+# Alembic (keep versions, ignore cache)
+# ========================================
+backend/alembic/versions/__pycache__/
+
+
+# ========================================
+# Temporary cleanup folder
+# ========================================
+_to_delete/
+
+
+# ========================================
+# Backend migrations & tests (optional)
+# ========================================
+backend/migrations/
+backend/tests/
