@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![TestFlow Logo](frontend/public/logo.svg)
+![TestFlow Logo](frontend/logo.svg)
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
