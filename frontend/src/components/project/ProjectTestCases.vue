@@ -418,7 +418,16 @@
         </div>
 
         <div>
-          <label class="block text-sm font-bold text-gray-700 mb-1">测试步骤</label>
+          <!-- 列标题行：与输入框对齐 -->
+          <!--<label class="block text-sm font-bold text-gray-700 mb-1">测试步骤</label>-->
+          <div class="flex gap-2 items-center mb-1">
+            <span class="w-6"></span>
+            <div class="flex-1 grid grid-cols-2 gap-2">
+              <label class="text-sm font-bold text-gray-700">测试步骤</label>
+              <label class="text-sm font-bold text-gray-700">预期结果</label>
+            </div>
+            <span class="w-6"></span>
+          </div>
           <div class="space-y-2">
             <div v-for="(step, index) in editForm.test_steps" :key="index" class="flex gap-2 items-start">
               <span class="text-gray-400 text-sm mt-2">{{ index + 1 }}.</span>
@@ -432,11 +441,6 @@
             </div>
             <button @click="addEditStep" class="text-blue-500 text-sm hover:text-blue-700">+ 添加步骤</button>
           </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-bold text-gray-700 mb-1">预期结果</label>
-          <el-input v-model="editForm.expected_result" type="textarea" :rows="2" placeholder="请输入预期结果" />
         </div>
       </div>
       <template #footer>

@@ -73,48 +73,33 @@ def create_demo_user(db: Session) -> User:
 
 
 def create_default_ai_models(db: Session, admin_user: User) -> list[AIModel]:
-    """创建默认AI模型配置"""
-    models = []
+    """创建默认AI模型配置（仅在没有任何模型时创建）"""
+    # 检查是否已有任何模型配置
+    existing_model_count = db.query(AIModel).count()
+    if existing_model_count > 0:
+        print(f"✅ 已有 {existing_model_count} 个AI模型配置，跳过默认模型创建")
+        # 返回所有现有模型供智能体使用
+        return db.query(AIModel).all()
     
-    # 默认模型配置
-    default_models = [
-        {
-            "name": "OpenAI GPT-4",
-            "provider": "openai", 
-            "model_id": "gpt-4",
-            "api_key": "your-openai-api-key-here",
-            "base_url": "https://api.openai.com/v1"
-        }
-    ]
+    # 首次启动，创建默认模型
+    print("🔄 首次启动，创建默认AI模型...")
     
-    for model_config in default_models:
-        # 检查是否已存在
-        existing_model = db.query(AIModel).filter(
-            AIModel.name == model_config["name"]
-        ).first()
-        
-        if existing_model:
-            print(f"✅ AI模型已存在: {existing_model.name}")
-            models.append(existing_model)
-            continue
-        
-        # 创建新模型
-        ai_model = AIModel(
-            name=model_config["name"],
-            provider=model_config["provider"],
-            model_id=model_config["model_id"],
-            api_key=model_config["api_key"],
-            base_url=model_config["base_url"],
-            is_active=False,  # 默认不激活，需要配置真实API密钥后激活
-            created_by=admin_user.id
-        )
-        
-        db.add(ai_model)
-        models.append(ai_model)
-        print(f"✅ AI模型创建成功: {ai_model.name}")
+    ai_model = AIModel(
+        name="OpenAI GPT-4",
+        provider="openai",
+        model_id="gpt-4",
+        api_key="your-openai-api-key-here",
+        base_url="https://api.openai.com/v1",
+        is_active=False,  # 默认不激活，需要配置真实API密钥后激活
+        created_by=admin_user.id
+    )
     
+    db.add(ai_model)
     db.commit()
-    return models
+    db.refresh(ai_model)
+    
+    print(f"✅ 默认AI模型创建成功: {ai_model.name}")
+    return [ai_model]
 
 
 def create_default_agents(db: Session, admin_user: User, ai_models: list[AIModel]) -> list[Agent]:
@@ -128,37 +113,38 @@ def create_default_agents(db: Session, admin_user: User, ai_models: list[AIModel
     agents = []
     
     # 默认智能体配置（system_prompt从prompts.py中引用，便于统一管理）
+    # 名称与前端实际使用的保持一致
     default_agents = [
         {
-            "name": "需求拆分智能体",
+            "name": "需求拆分专家",
             "type": AgentType.REQUIREMENT_SPLITTER,
             "system_prompt": REQUIREMENT_SPLITTER_SYSTEM
         },
         {
-            "name": "测试点生成智能体",
+            "name": "测试分析专家",
             "type": AgentType.TEST_POINT_GENERATOR,
             "system_prompt": TEST_POINT_GENERATOR_SYSTEM
         },
         {
-            "name": "测试用例设计智能体",
+            "name": "测试用例设计专家",
             "type": AgentType.TEST_CASE_DESIGNER,
             "system_prompt": TEST_CASE_DESIGNER_SYSTEM
         },
         {
-            "name": "用例优化智能体",
+            "name": "测试用例优化专家",
             "type": AgentType.TEST_CASE_OPTIMIZER,
             "system_prompt": TEST_CASE_OPTIMIZER_SYSTEM
         }
     ]
     
     for agent_config in default_agents:
-        # 检查是否已存在
+        # 按AgentType检查是否已存在（而非按名称，避免名称修改后重复创建）
         existing_agent = db.query(Agent).filter(
-            Agent.name == agent_config["name"]
+            Agent.type == agent_config["type"]
         ).first()
         
         if existing_agent:
-            print(f"✅ 智能体已存在: {existing_agent.name}")
+            print(f"✅ 智能体已存在: {existing_agent.name} (类型: {existing_agent.type.value})")
             agents.append(existing_agent)
             continue
         

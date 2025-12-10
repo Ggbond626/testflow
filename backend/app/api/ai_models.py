@@ -485,8 +485,8 @@ def get_agents(
     db: Session = Depends(get_db),
     current_user: UserSchema = Depends(get_current_active_user)
 ) -> Any:
-    """获取智能体列表"""
-    agents = db.query(Agent).filter(Agent.is_active == True).offset(skip).limit(limit).all()
+    """获取智能体列表（包含激活和未激活的）"""
+    agents = db.query(Agent).offset(skip).limit(limit).all()
     
     result = []
     for agent in agents:

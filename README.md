@@ -1,4 +1,4 @@
-# TestFlow - AI 驱动的自动化测试用例生成系统
+# TestFlow - 企业级模块化测试协作平台
 
 <div align="center">
 
@@ -9,39 +9,90 @@
 ![Vue](https://img.shields.io/badge/Vue.js-3.x-green.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.68+-009688.svg)
 
-**TestFlow** 是一个现代化的、基于 AI 智能体的自动化测试用例生成与管理平台。它利用大语言模型（LLM）的能力，将需求文档自动转化为结构清晰、覆盖全面的测试用例，大幅提升测试设计效率。
+**面向大型项目的智能化、全流程测试管理解决方案**
 
-[功能特性](#-核心功能) • [技术架构](#-技术栈) • [快速开始](#-快速开始) • [许可证](#-许可证)
+TestFlow 重新定义了测试用例生成方式。它不仅是一个 AI 效率工具，更是一个支持大型项目**模块化拆解**与**团队并行协作**的完整平台。通过智能体工作流，将复杂需求转化为结构化、标准化的测试资产。
+
+[平台架构](#系统架构) • [核心特性](#核心功能) • [快速开始](#快速开始) • [适用场景](#适用场景) • [许可证](#许可证)
 
 </div>
 
 ---
 
-## 📖 项目简介
+![产品界面预览](docs/images/banner.png)
 
-TestFlow 旨在解决传统测试用例编写耗时、覆盖率不足的问题。通过内置的智能体工作流（Agent Workflow），系统能够模拟资深测试工程师的思维路径：
+---
 
-1.  **需求分析**：自动拆解复杂需求文档。
-2.  **测试点生成**：基于测试理论（等价类、边界值等）生成测试点。
-3.  **用例设计**：生成包含详细步骤和预期结果的完整用例。
-4.  **智能优化**：自我审查并优化用例质量。
+## 💡 项目简介
 
-## ✨ 核心功能
+在面对成百上千个功能点的大型软件项目时，传统的“单点生成”或“文档堆砌”已无法满足需求且有着混乱的文档管理，测试点不清晰不系统。TestFlow 专为解决这一痛点而生：
 
-### 🤖 AI 智能生成
-- **一键生成**：上传需求文档，全自动生成测试用例。
-- **智能体协作**：内置需求拆分、测试点生成、用例设计等多个专用智能体。
-- **批量优化**：对现有用例进行 AI 批量审查与润色。
+- **从“工具”升级为“平台”**：提供完整的项目-模块-任务层级管理，由于 AI 处理的不仅仅是文本，而是结构化的业务逻辑。
+- **模块化治理**：支持将庞大的系统拆解为独立的测试模块，每个模块拥有独立的状态流转与负责人。
+- **异步生产力**：内置高性能异步任务引擎，支持后台批量处理万级用例生成任务（预期实现）。
 
-### 📁 测试管理
-- **层级/列表视图**：支持按模块层级或扁平列表管理用例。
-- **Excel/XMind 导入导出**：无缝对接现有工作流。
-- **拖拽式管理**：直观的模块与用例管理体验。
+---
 
-### ⚡ 现代化体验
-- **极速响应**：基于 FastAPI 的高性能后端。
-- **精美 UI**：采用 Element Plus + Tailwind CSS 打造的现代化界面。
-- **实时反馈**：异步任务处理，实时展示生成进度。
+## 🏗 系统架构
+
+TestFlow 采用现代化的前后端分离架构，核心集成 **AI Agent 编排引擎** 与 **异步任务队列**，确保在处理大规模数据时的稳定性与响应速度。
+
+![System Architecture](https://mermaid.ink/img/Z3JhcGggVEQKICAgICUlIPCfjqgg5qC35byP5a6a5LmJCiAgICBjbGFzc0RlZiB1c2VyIGZpbGw6I2UzZjJmZCxzdHJva2U6IzE1NjVjMCxzdHJva2Utd2lkdGg6MnB4LGNvbG9yOiMwZDQ3YTEscng6MTAscnk6MTA7CiAgICBjbGFzc0RlZiBmcm9udGVuZCBmaWxsOiNlOGY1ZTksc3Ryb2tlOiMyZTdkMzIsc3Ryb2tlLXdpZHRoOjJweCxjb2xvcjojMWI1ZTIwLHJ4OjUscnk6NTsKICAgIGNsYXNzRGVmIGdhdGV3YXkgZmlsbDojZmZmM2UwLHN0cm9rZTojZWY2YzAwLHN0cm9rZS13aWR0aDoycHgsY29sb3I6I2U2NTEwMCxyeDo1LHJ5OjU7CiAgICBjbGFzc0RlZiBzZXJ2aWNlIGZpbGw6I2YzZTVmNSxzdHJva2U6IzdiMWZhMixzdHJva2Utd2lkdGg6MnB4LGNvbG9yOiM0YTE0OGMscng6NSxyeTo1OwogICAgY2xhc3NEZWYgZW5naW5lIGZpbGw6I2ZmZjhlMSxzdHJva2U6I2ZmOGYwMCxzdHJva2Utd2lkdGg6M3B4LGNvbG9yOiNmZjZmMDAscng6NSxyeTo1LHN0cm9rZS1kYXNoYXJyYXk6IDUgNTsKICAgIGNsYXNzRGVmIGFpIGZpbGw6I2ZjZTRlYyxzdHJva2U6I2MyMTg1YixzdHJva2Utd2lkdGg6M3B4LGNvbG9yOiM4ODBlNGYscng6NSxyeTo1OwogICAgY2xhc3NEZWYgZGIgZmlsbDojZWNlZmYxLHN0cm9rZTojNDU1YTY0LHN0cm9rZS13aWR0aDoycHgsY29sb3I6IzI2MzIzOCxyeDo1LHJ5OjU7CiAgICBjbGFzc0RlZiBleHQgZmlsbDojZmFmYWZhLHN0cm9rZTojOWU5ZTllLHN0cm9rZS13aWR0aDoxcHgsY29sb3I6IzYxNjE2MSxzdHJva2UtZGFzaGFycmF5OiAzIDM7CgogICAgJSUg8J-RpSDnlKjmiLflsYIKICAgIFVzZXIoW_CfkaUgVXNlciAvIFFBIFRlYW1dKTo6OnVzZXIKCiAgICAlJSDwn5K7IOWJjeerr-WxggogICAgc3ViZ3JhcGggRnJvbnRlbmQgWyLwn5al77iPIFByZXNlbnRhdGlvbiBMYXllciJdCiAgICAgICAgZGlyZWN0aW9uIFRCCiAgICAgICAgc3ViZ3JhcGggRkVfQ29yZSBbIlZ1ZSAzIEFwcGxpY2F0aW9uIl0KICAgICAgICAgICAgVUlbV2ViIENvbnNvbGVdOjo6ZnJvbnRlbmQKICAgICAgICAgICAgU3RvcmVbUGluaWEgU3RhdGVdOjo6ZnJvbnRlbmQKICAgICAgICBlbmQKICAgIGVuZAoKICAgICUlIPCfm6HvuI8g572R5YWz5bGCCiAgICBzdWJncmFwaCBHYXRld2F5X0xheWVyIFsi8J-boe-4jyBBUEkgR2F0ZXdheSJdCiAgICAgICAgQVBJW0Zhc3RBUEkgUm91dGVyXTo6OmdhdGV3YXkKICAgICAgICBBdXRoW0pXVCBBdXRoXTo6OmdhdGV3YXkKICAgIGVuZAoKICAgICUlIPCfp6Ag5qC45b-D5Lia5Yqh5bGCCiAgICBzdWJncmFwaCBCdXNpbmVzc19MYXllciBbIvCfp6kgQnVzaW5lc3MgTG9naWMiXQogICAgICAgIGRpcmVjdGlvbiBUQgogICAgICAgIFByb2plY3RTdmNbUHJvamVjdCBTZXJ2aWNlXTo6OnNlcnZpY2UKICAgICAgICBNb2R1bGVTdmNbTW9kdWxlIFNlcnZpY2VdOjo6c2VydmljZQogICAgICAgIFVzZXJTdmNbVXNlciBTZXJ2aWNlXTo6OnNlcnZpY2UKICAgIGVuZAoKICAgICUlIOKaoSDlvILmraXmmbrog73lvJXmk44gKOaguOW_g-S8mOWKvykKICAgIHN1YmdyYXBoIEludGVsbGlnZW50X0VuZ2luZSBbIvCfmoAgSW50ZWxsaWdlbnQgVGFzayBFbmdpbmUgKENvcmUgQWR2YW50YWdlKSJdCiAgICAgICAgZGlyZWN0aW9uIFRCCiAgICAgICAgQXN5bmNUYXNrW-KaoSBBc3luYyBUYXNrIE1hbmFnZXJdOjo6ZW5naW5lCiAgICAgICAgUXVldWVb8J-TpSBSZWRpcy9NZW1vcnkgUXVldWVdOjo6ZW5naW5lCiAgICAgICAgCiAgICAgICAgc3ViZ3JhcGggQWdlbnRzIFsi8J-kliBBSSBBZ2VudCBQaXBlbGluZSJdCiAgICAgICAgICAgIGRpcmVjdGlvbiBMUgogICAgICAgICAgICBBMVsxLuaLhuWIhl06OjphaSAtLT4gQTJbMi7nrZbliJJdOjo6YWkKICAgICAgICAgICAgQTIgLS0-IEEzWzMu6K6-6K6hXTo6OmFpCiAgICAgICAgICAgIEEzIC0tPiBBNFs0LuS8mOWMll06OjphaQogICAgICAgIGVuZAogICAgZW5kCgogICAgJSUg8J-XhO-4jyDmlbDmja7lsYIKICAgIHN1YmdyYXBoIERhdGFfTGF5ZXIgWyLwn5K-IERhdGEgUGVyc2lzdGVuY2UiXQogICAgICAgIERCWyhTUUxpdGUgLyBQb3N0Z3JlU1FMKV06OjpkYgogICAgZW5kCgogICAgJSUg8J-UlyDpk77mjqXlhbPns7sKICAgIFVzZXIgPT0-IFVJCiAgICBVSSA8LS0-IEFQSQogICAgQVBJIC0tPiBBdXRoCiAgICBBdXRoIC0tPiBQcm9qZWN0U3ZjICYgTW9kdWxlU3ZjICYgVXNlclN2YwoKICAgICUlIOaguOW_g-a1gei9rAogICAgTW9kdWxlU3ZjIC0uLT58IlN1Ym1pdCBUYXNrInwgQXN5bmNUYXNrCiAgICBBc3luY1Rhc2sgPD09PiBRdWV1ZQogICAgUXVldWUgPT0-IEExCiAgICAKICAgICUlIEFJIOS6pOS6kgogICAgTExNW_Cfp6AgTExNIEludGVyZmFjZV06OjpleHQKICAgIEFnZW50cyAtLi0-fCJJbmZlcmVuY2UifCBMTE0KCiAgICAlJSDmlbDmja7lrZjlgqgKICAgIFByb2plY3RTdmMgJiBNb2R1bGVTdmMgJiBVc2VyU3ZjIDwtLT4gREIKICAgIEFnZW50cyA9PT58IlNhdmUgUmVzdWx0InwgREI=)
+
+---
+
+## 🚀 核心功能
+
+### 1. 项目治理 (Project Governance)
+* **模块化架构**：支持无限层级的“项目-模块”结构，将复杂系统化整为零。
+* **分权协作**：基于模块的责任人机制 (`Assignment System`)，支持 Owner/Member 角色分工，任务责任到人。
+* **状态流转**：每个模块独立管理生命周期（规划中 -> 进行中 -> 已完成），进度一目了然。
+
+![模块化管理演示](docs/images/module_management.gif)
+> *模块化管理：创建项目 → 添加模块 → 分配负责人 → 状态流转*
+
+### 2. AI 生产力 (AI Productivity)
+* **四阶段智能流水线**：
+    1.  **需求分析**：自动解析文档，提取功能点。
+    2.  **测试策划**：生成测试点与覆盖策略。
+    3.  **用例设计**：输出包含详细步骤的测试用例。
+    4.  **自我审查**：AI 模拟资深测试专家进行质量检查与优化。
+* **批量并发生成**：利用后台异步队列，支持一次性提交数百个功能点的生成任务，无需前端等待（长期目标）。
+
+![AI Workflow演示](docs/images/ai_workflow.gif)
+> *AI 一键生成：从上传需求文档 → 需求拆分 → 测试点生成 → 用例设计的完整流程*
+
+### 3. 数据与资产 (Assets Management)
+* **结构化管理**：不再是散落的文档，而是数据库中结构化的测试资产。
+* **双视图管理**：提供“层级树”与“列表”两种视图，满足不同的管理习惯。
+* **生态互通**：支持 Excel/XMind 导入导出，无缝融入现有测试流程。
+
+![用例管理演示](docs/images/case_management.gif)
+> *用例管理：层级视图/列表视图切换、搜索、批量导出*
+
+---
+
+## 🎯 适用场景
+
+TestFlow 并非为了替代简单的 Excel 表格，而是为了解决复杂性而生：
+
+*   **大型复杂系统**：面对上千个功能点、多层级模块的复杂业务系统。
+*   **跨团队协作**：开发与测试团队通过统一平台进行资产沉淀与流转。
+*   **敏捷迭代开发**：需要跟随两周一迭代的快节奏，快速更新回归测试用例。
+*   **标准化设计规范**：希望建立统一的测试用例设计规范与质量标准的企业。
+
+---
+
+## 为什么选择 TestFlow？
+
+| 特性 | 传统方式 | TestFlow |
+|------|---------|----------|
+| 用例生成 | 手动编写，耗时数天 | AI 自动生成，分钟级完成 |
+| 项目管理 | 文档分散，难以维护 | 模块化管理，结构清晰 |
+| 团队协作 | 文件传递，版本混乱 | 多用户协作，权限管理 |
+| 测试覆盖 | 依赖个人经验，易遗漏 | AI 智能分析，覆盖全面 |
+| 可扩展性 | 固定流程，难以定制 | 高度可配置，灵活适配 |
+| 大规模处理 | 手动操作，效率低下 | 批量并发，高效处理 |
 
 ## 🛠 技术栈
 
@@ -128,7 +179,6 @@ npm run dev
 ```bash
 # 1. 配置环境变量
 cp backend/.env.example backend/.env
-# 编辑 backend/.env，填入你的 AI API Key
 
 # 2. 启动服务
 docker-compose up -d --build
