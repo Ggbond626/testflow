@@ -24,11 +24,26 @@ async def lifespan(app: FastAPI):
         SettingsService.initialize_defaults(db)
         print("✅ 系统默认设置初始化完成")
         
+        # 检查是否首次启动（通过检查是否存在管理员用户）
+        from app.models.user import User, UserRole
+        admin_exists = db.query(User).filter(User.role == UserRole.ADMIN).first()
+        
+        if not admin_exists:
+            print("🔄 检测到首次启动，开始初始化数据...")
+            try:
+                from app.utils.init_data import init_database
+                init_database()
+            except Exception as init_error:
+                print(f"⚠️ 数据初始化失败: {init_error}")
+                # 不影响应用启动，继续运行
+        else:
+            print("✅ 数据库已初始化，跳过初始化步骤")
+        
         # 加载并发配置到任务管理器
         task_manager.load_config_from_db(db)
         print("✅ 任务管理器并发配置加载完成")
     except Exception as e:
-        print(f"⚠️ 设置初始化警告: {e}")
+        print(f"⚠️ 初始化警告: {e}")
     finally:
         db.close()
     
