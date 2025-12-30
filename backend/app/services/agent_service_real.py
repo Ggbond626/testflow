@@ -13,7 +13,7 @@ from sqlalchemy.orm import Session
 from app.models.ai_config import Agent, AIModel
 from app.services.ai_service import ai_service
 from app.services.settings_service import SettingsService
-from app.prompts_optimized import (
+from app.prompts import (
     render_prompt,
     REQUIREMENT_ANALYSIS_USER,
     TEST_POINT_USER,

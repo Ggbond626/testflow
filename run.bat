@@ -25,12 +25,19 @@ cd backend
 if not exist .venv (
     echo 创建虚拟环境...
     python -m venv .venv
-    call .venv\Scripts\activate
+)
+call .venv\Scripts\activate
+
+REM 检查依赖是否安装（通过检查 uvicorn 是否存在）
+.venv\Scripts\pip.exe show uvicorn >nul 2>&1
+if errorlevel 1 (
+    echo [调试] 当前 Python 路径:
+    where python
     echo 安装后端依赖...
-    pip install -r requirements.txt >nul 2>&1
+    set PYTHONUTF8=1
+    .venv\Scripts\pip.exe install --no-cache-dir -r ..\requirements.txt
 ) else (
-    echo 虚拟环境已存在，跳过安装
-    call .venv\Scripts\activate
+    echo 后端依赖已安装，跳过
 )
 
 REM 检查.env
