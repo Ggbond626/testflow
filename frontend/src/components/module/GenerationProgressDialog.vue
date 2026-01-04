@@ -264,7 +264,7 @@ const startPolling = () => {
   
   pollInterval = window.setInterval(async () => {
     try {
-      const response = await api.get(`/api/agents/tasks/${props.taskId}/status`) as any
+      const response = await api.get(`/agents/tasks/${props.taskId}/status`) as any
       const { status, progress: prog, message, error } = response
       
       progress.value = prog || 0

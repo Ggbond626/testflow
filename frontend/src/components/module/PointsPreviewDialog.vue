@@ -183,7 +183,7 @@ const handleSave = async () => {
   try {
     // 调用批量创建API
     const response = await api.post(
-      `/api/projects/${props.projectId}/modules/${props.moduleId}/requirements/files/${props.fileId}/points/batch`,
+      `/projects/${props.projectId}/modules/${props.moduleId}/requirements/files/${props.fileId}/points/batch`,
       {
         points: props.points.map((point, index) => ({
           content: point.content,

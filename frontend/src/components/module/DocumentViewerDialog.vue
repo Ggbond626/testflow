@@ -231,7 +231,7 @@ const currentPreviewImage = computed(() => images.value[currentPreviewIndex.valu
 const getImageUrl = (image: RequirementImage) => {
   // 使用后端API获取图片
   const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
-  return `${baseUrl}/api/projects/${props.projectId}/requirements/files/${image.requirement_file_id}/images/${image.id}`
+  return `${baseUrl}/projects/${props.projectId}/requirements/files/${image.requirement_file_id}/images/${image.id}`
 }
 
 // 处理图片加载错误
@@ -272,10 +272,10 @@ const loadContent = async () => {
 
   try {
     const response = await api.get<FileContentResponse>(
-      `/api/projects/${props.projectId}/requirements/files/${props.document.id}/content`
+      `/projects/${props.projectId}/requirements/files/${props.document.id}/content`
     )
     
-    const data = response as FileContentResponse
+    const data = response as unknown as FileContentResponse
     
     if (data.is_extracted && data.extracted_content) {
       content.value = data.extracted_content
