@@ -254,11 +254,13 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import { User, Lock, Loading } from '@element-plus/icons-vue'
 
 const authStore = useAuthStore()
+const router = useRouter()
 
 // 表单引用
 const loginFormRef = ref<FormInstance>()
@@ -288,6 +290,7 @@ const handleLogin = async () => {
   try {
     await loginFormRef.value.validate()
     await authStore.login(loginForm)
+    router.push('/')
   } catch (error: any) {
     // 显示后端返回的错误消息
     ElMessage.error(error.message || '登录失败，请重试')

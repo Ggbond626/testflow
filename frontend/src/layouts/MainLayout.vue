@@ -143,6 +143,7 @@ const handleCommand = async (command: string) => {
           confirmButtonClass: '!bg-black !border-black',
         })
         await authStore.logout()
+        router.push('/login')
       } catch (error) {
         // Cancelled
       }

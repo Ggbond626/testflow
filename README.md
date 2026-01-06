@@ -180,10 +180,15 @@ npm run dev
 # 1. 配置环境变量
 cp backend/.env.example backend/.env
 
-# 2. 启动服务
+# 2. 初始化数据库文件 (关键步骤)
+# 防止 Docker 自动创建目录导致报错，需先创建一个空数据库文件
+cp backend/autotestcase.db.empty backend/autotestcase.db
+# 注意：如果已运行过 docker 导致生成了 autotestcase.db 目录，请先执行 rm -rf backend/autotestcase.db 删除它
+
+# 3. 启动服务
 docker-compose up -d --build
 
-# 3. 访问应用
+# 4. 访问应用
 # 前端: http://localhost:3000
 # 后端: http://localhost:9000/docs
 ```

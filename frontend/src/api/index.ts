@@ -32,13 +32,13 @@ api.interceptors.response.use(
   },
   (error) => {
     const authStore = useAuthStore()
-    
+
     if (error.response) {
       const { status, data } = error.response
-      
+
       // 提取后端返回的错误消息
       let errorMessage = data.detail || data.message || ''
-      
+
       switch (status) {
         case 401:
           // 如果是登录接口的401错误，直接使用后端返回的消息
@@ -47,6 +47,7 @@ api.interceptors.response.use(
           } else {
             // 其他接口的401错误，说明token过期
             authStore.logout()
+            window.location.href = '/login'
             errorMessage = '登录已过期，请重新登录'
           }
           break
@@ -71,7 +72,7 @@ api.interceptors.response.use(
         default:
           errorMessage = errorMessage || `请求失败 (${status})`
       }
-      
+
       // 将错误消息附加到error对象上，供调用方使用
       error.message = errorMessage
     } else if (error.request) {
@@ -79,7 +80,7 @@ api.interceptors.response.use(
     } else {
       error.message = '请求配置错误'
     }
-    
+
     return Promise.reject(error)
   }
 )

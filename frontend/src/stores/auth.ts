@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { authApi, type User, type LoginRequest, type RegisterRequest } from '@/api/auth'
 import { ElMessage } from 'element-plus'
-import router from '@/router'
+
 
 export const useAuthStore = defineStore('auth', () => {
   // 状态
@@ -33,21 +33,20 @@ export const useAuthStore = defineStore('auth', () => {
     loading.value = true
     try {
       const response = await authApi.login(loginData)
-      
+
       // 保存token和用户信息
       token.value = response.access_token
       refreshToken.value = response.refresh_token
       user.value = response.user
-      
+
       // 保存到localStorage
       localStorage.setItem('access_token', response.access_token)
       localStorage.setItem('refresh_token', response.refresh_token)
-      
+
       ElMessage.success('登录成功')
-      
-      // 跳转到首页
-      router.push('/')
-      
+
+
+
       return response
     } catch (error) {
       throw error
@@ -83,13 +82,10 @@ export const useAuthStore = defineStore('auth', () => {
       token.value = null
       refreshToken.value = null
       user.value = null
-      
+
       // 清除localStorage
       localStorage.removeItem('access_token')
       localStorage.removeItem('refresh_token')
-      
-      // 跳转到登录页
-      router.push('/login')
     }
   }
 
@@ -104,10 +100,10 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await authApi.refreshToken({
         refresh_token: refreshToken.value
       })
-      
+
       token.value = response.access_token
       localStorage.setItem('access_token', response.access_token)
-      
+
       return true
     } catch (error) {
       logout()
@@ -143,11 +139,11 @@ export const useAuthStore = defineStore('auth', () => {
     refreshToken,
     user,
     loading,
-    
+
     // 计算属性
     isAuthenticated,
     isAdmin,
-    
+
     // 方法
     initUser,
     login,
